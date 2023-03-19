@@ -9,18 +9,23 @@ const chat: NextApiHandler = async (req, res) => {
   res.setHeader('X-Accel-Buffering', 'no');
 
   const apiKey = process.env.OPENAI_API_KEY;
-  const messages = req.body as ChatMessage[];
   const httpsProxy = process.env.HTTPS_PROXY;
+  const enableTestOpenAIAPI = process.env.ENABLE_TEST_OPENAI_API === 'true';
+
+  const completionURL = enableTestOpenAIAPI
+    ? 'http://localhost:3000/api/demo/completion'
+    : 'https://api.openai.com/v1/chat/completions';
+
+  const messages = req.body as ChatMessage[];
 
   const requestBody = generateRequestBody(apiKey, messages);
   if (httpsProxy) requestBody.dispatcher = new ProxyAgent(httpsProxy);
 
+  // console.log(`requestBody: ${JSON.stringify(requestBody)}`);
+
   let response;
   try {
-    response = await fetch(
-      `https://api.openai.com/v1/chat/completions`,
-      requestBody
-    );
+    response = await fetch(completionURL, requestBody);
   } catch (e) {
     console.error(e);
   }

@@ -10,10 +10,11 @@ export default async function handler(
   res.setHeader('Cache-Control', 'no-cache, no-transform');
   res.setHeader('X-Accel-Buffering', 'no');
 
+  await sleep(1000);
   for (let i = 0; i < 5; i++) {
     const data = { message: 'Hello, world!' };
     res.write(`${JSON.stringify(data)}\n`);
-    await sleep(1000);
+    await sleep(500);
   }
 
   res.end('done\n');
