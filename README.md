@@ -1,6 +1,20 @@
+## Next ChatGPT
+
 ![](https://github.com/Cyronlee/next-chat-gpt/blob/main/docs/intro.png?raw=true)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Features
+
+- [x] Multi-turn conversations
+- [ ] Site password
+- [ ] i18n
+- [ ] Export conversation logs
+- [ ] Clear context
+- [ ] Stop / Restart generating
+- [ ] Customize prompt
+- [ ] Preset models
+- [ ] Dark mode
 
 ## Getting Started
 
